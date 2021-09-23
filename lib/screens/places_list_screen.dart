@@ -1,3 +1,4 @@
+import 'package:city_app/screens/add_place_screen.dart';
 import 'package:flutter/material.dart';
 
 class PlacesListScreen extends StatelessWidget {
@@ -10,7 +11,9 @@ class PlacesListScreen extends StatelessWidget {
         title: Text('Your Places'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(AddPlaceScreen.routeName);
+            },
             icon: Icon(Icons.add),
           ),
         ],
