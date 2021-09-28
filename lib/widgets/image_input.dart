@@ -10,14 +10,18 @@ class ImageInput extends StatefulWidget {
 }
 
 class _ImageInputState extends State<ImageInput> {
-  File? _storedImage;
+  XFile? _storedImage;
 
   Future<void> _takePicture() async {
     final picker = ImagePicker();
-    final image = picker.pickImage(
+    final _imageFile = await picker.pickImage(
       source: ImageSource.camera,
       maxWidth: 600.0,
     );
+
+    setState(() {
+      _storedImage = _imageFile;
+    });
   }
 
   @override
@@ -35,7 +39,7 @@ class _ImageInputState extends State<ImageInput> {
           ),
           child: _storedImage != null
               ? Image.file(
-                  _storedImage!,
+                  File(_storedImage!.path),  // _stored image changes from xfile to file
                   fit: BoxFit.cover,
                   width: double.infinity,
                 )
